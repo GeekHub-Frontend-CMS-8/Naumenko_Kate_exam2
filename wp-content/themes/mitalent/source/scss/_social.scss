@@ -1,0 +1,15 @@
+.social {
+  max-width: 185px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__item:active,
+  &__item:link,
+  &__item:visited {
+    color: #1a1a1d;
+    font-size: 14px;
+  }
+
+  &__item:hover { color: #d9e7e7; }
+}
