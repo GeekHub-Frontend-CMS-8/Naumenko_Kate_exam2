@@ -57,13 +57,7 @@ function mitalent_scripts() {
   wp_enqueue_style( 'wp-google-fonts','https://fonts.googleapis.com/css?family=Poppins:400,500" rel="stylesheet' );
   wp_deregister_script('jquery');
   wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
-//    wp_enqueue_script('masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', array(), null, true);
   wp_enqueue_script('mainscript', JS_DIR . '/main.js', array( 'jquery' ));
-//  };
-
-//	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-//		wp_enqueue_script( 'comment-reply' );
-//	}
 }
 add_action( 'wp_enqueue_scripts', 'mitalent_scripts' );
 
@@ -74,3 +68,30 @@ function wpforo_search_form( $html ) {
   return $html;
 }
 add_filter( 'get_search_form', 'wpforo_search_form' );
+
+register_post_type('photo',
+  array(
+    'labels' => array(
+      'name' => __('Photo'),
+      'singular_name' => __('Photo'),
+      'add_new' => __('Add new'),
+      'add_new_item' => __('Add new photo'),
+      'edit_item' => __('Edit photo')
+    ),
+    'public' => true,
+    'has_archive' => true,
+    'supports' => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'custom-fields', 'post-formats'),
+    'query_var' => false
+  )
+);
+
+function getPhoto() {
+  $photo = array(
+    'numberposts' => 20,
+    'orderby'     => 'date',
+    'order'       => 'ASC',
+    'post_type'   => 'photo',
+  );
+
+  return get_posts($photo);
+}

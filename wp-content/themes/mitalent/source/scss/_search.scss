@@ -46,12 +46,18 @@
 
 .search-field {
   border: 0;
-  padding: 10px 50px;
+  padding: 10px;
+  width: 40px;
 }
 
-@media only screen and (min-width: 470px) {
+  @media only screen and (min-width: 470px) {
   .search {
     padding: 0;
     margin: 0;
+  }
+
+  .search-field {
+    border: 0;
+    padding: 10px 50px;
   }
 }
